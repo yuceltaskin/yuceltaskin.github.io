@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "https://yuceltaskin.info/*"
+  to = "https://www.yuceltaskin.info/:splat"
+  status = 301
+  force = true
