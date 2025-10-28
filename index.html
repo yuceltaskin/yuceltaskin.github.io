@@ -30,7 +30,7 @@
         :root {
             --accent-color: #00ADB5; /* Teal/Turquoise */
             --dark-button-color: #2D3748; /* Tailwind gray-800 - Explore My Work Buton Rengi */
-            --grid-gap: 5px; /* Yeni grid boşluğu değişkeni */
+             /* Grid gap kaldırıldı, Tailwind sınıfları kullanılacak */
         }
         .text-accent {
             color: var(--accent-color);
@@ -41,16 +41,24 @@
         .border-accent {
             border-color: var(--accent-color);
         }
-        /* Proje görselleri için sabit yükseklik (mobil ve masaüstü uyumlu) */
+
+         /* Proje görselleri için 16:9 oranı (Mobil öncelikli) */
+         .project-image-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio (9 / 16 = 0.5625) */
+            height: 0;
+            overflow: hidden;
+            background-color: #e5e7eb; /* Placeholder background */
+        }
         .project-image {
-            height: 280px; /* Görsel yüksekliğini sabitler */
-            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Resmi kırparak alanı doldurur */
         }
-        @media (min-width: 640px) {
-            .project-image {
-                height: 320px;
-            }
-        }
+       
         /* Hero bölümünün dikeyde ortalanması ve YUKARI TAŞINMASI için özel stil */
         .hero-section {
             min-height: 40vh; /* Minimum ekran yüksekliği %40'a düşürüldü */
@@ -279,10 +287,13 @@
         <!-- 2. Projeler (Portfolyo) Bölümü -->
         <section id="projects" class="pt-8 pb-16 sm:pt-12 sm:pb-24 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl sm:text-4xl font-bold mb-12 text-center text-gray-900">Work</h2>
-            <div class="grid grid-cols-2" style="gap: var(--grid-gap);">
+             <!-- Grid Düzeni: Mobilde tek sütun (gap-1.5), sm ve üzeri ekranlarda iki sütun (sm:gap-1) -->
+            <div class="grid grid-cols-1 gap-1.5 sm:grid-cols-2 sm:gap-1">
                 <!-- Proje 1: Hazy Morning - Video Oynatıcıyı Tetikler -->
                 <a href="#" data-video-src="https://cdn1.cinema8.com/mp4s/18200/oitPRJVrXYg0B-5jkqXg_XnwiUJzY_WpEwzPBKFYWf1BKYEbhXkVvOk8VUylmrRy/media.mp4" class="video-project-link group block relative overflow-hidden rounded-3px bg-gray-800 shadow-xl transition duration-500 transform hover:-translate-y-1 hover:shadow-accent/40">
-                    <img src="https://static-01.cinema8.com/gallery/18200/dce129e8-8fca-4265-82d5-102094ccd4e8/leadgen.webp" alt="Hazy Morning" class="w-full project-image object-cover transition-transform duration-500 group-hover:scale-[1.05]">
+                     <div class="project-image-container">
+                        <img src="https://static-01.cinema8.com/gallery/18200/dce129e8-8fca-4265-82d5-102094ccd4e8/leadgen.webp" alt="Hazy Morning" class="project-image transition-transform duration-500 group-hover:scale-[1.05]">
+                    </div>
                     <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-4 sm:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         <h3 class="text-xl sm:text-3xl font-bold text-gray-100 leading-tight">Turn Views into Leads</h3>
                         <p class="text-md sm:text-lg text-accent mt-1">2025</p>
@@ -290,16 +301,19 @@
                 </a>
                 <!-- Proje 2: Morningtide -->
                 <a href="#" data-video-src="https://cdn1.cinema8.com/mp4s/18200/AmRbRRwXdJsZPNofE4oMw9ch09CmJZALX7b6RbeeTvSPjTRz7cnCbj3OuI0VVwJz/media.mp4" class="video-project-link group block relative overflow-hidden rounded-3px bg-gray-800 shadow-xl transition duration-500 transform hover:-translate-y-1 hover:shadow-accent/40">
-                    <img src="https://static-01.cinema8.com/gallery/18200/7d2bacf5-3b09-40f5-985f-dd13b6169652/akademi-cinema8.webp" alt="Morningtide" class="w-full project-image object-cover transition-transform duration-500 group-hover:scale-[1.05]">
+                    <div class="project-image-container">
+                        <img src="https://static-01.cinema8.com/gallery/18200/7d2bacf5-3b09-40f5-985f-dd13b6169652/akademi-cinema8.webp" alt="Morningtide" class="project-image transition-transform duration-500 group-hover:scale-[1.05]">
+                    </div>
                     <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-4 sm:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         <h3 class="text-xl sm:text-3xl font-bold text-gray-100 leading-tight">Don’t Just Watch — Interact. Discover Cinema8.</h3>
                         <p class="text-md sm:text-lg text-accent mt-1">2025</p>
                     </div>
                 </a>
                 <!-- Proje 3: Winter in August -->
-<a href="#" data-video-src="https://cdn1.cinema8.com/mp4s/28354/9z5SKhY6JdflohUfI0Bu8MQYKXeDh9_jzrA-DKMd6pqiuwJKK5qLGtZ02CZvm0B8/media.mp4" class="video-project-link group block relative overflow-hidden rounded-3px bg-gray-800 shadow-xl transition duration-500 transform hover:-translate-y-1 hover:shadow-accent/40">
-
-                                <img src="https://static-01.cinema8.com/gallery/18200/aec7118c-9305-4a8e-a1f5-d1c40e62eb51/iPhone+CGI+Concept.webp" alt="Winter in August" class="w-full project-image object-cover transition-transform duration-500 group-hover:scale-[1.05]">
+                <a href="#" data-video-src="https://cdn1.cinema8.com/mp4s/28354/9z5SKhY6JdflohUfI0Bu8MQYKXeDh9_jzrA-DKMd6pqiuwJKK5qLGtZ02CZvm0B8/media.mp4" class="video-project-link group block relative overflow-hidden rounded-3px bg-gray-800 shadow-xl transition duration-500 transform hover:-translate-y-1 hover:shadow-accent/40">
+                    <div class="project-image-container">
+                        <img src="https://static-01.cinema8.com/gallery/18200/aec7118c-9305-4a8e-a1f5-d1c40e62eb51/iPhone+CGI+Concept.webp" alt="Winter in August" class="project-image transition-transform duration-500 group-hover:scale-[1.05]">
+                    </div>
                     <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-4 sm:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         <h3 class="text-xl sm:text-3xl font-bold text-gray-100 leading-tight">Beyond Glass: iPhone CGI Concept</h3>
                         <p class="text-md sm:text-lg text-accent mt-1">2023</p>
@@ -307,7 +321,9 @@
                 </a>
                 <!-- Proje 4: Golden Autumn -->
                 <a href="#" data-video-src="https://cdn1.cinema8.com/mp4s/18200/aHxbjJ22TkOHStJnEMH3Up8BDAt9t_fE4J-CENFQurOyFLTyS6Y9ApqPTvHk9Acm/media.mp4" class="video-project-link group block relative overflow-hidden rounded-3px bg-gray-800 shadow-xl transition duration-500 transform hover:-translate-y-1 hover:shadow-accent/40">
-                    <img src="https://static-01.cinema8.com/gallery/18200/e3c7a3bb-ef1f-44a2-8afd-04d22318b641/noleadsjustviews.webp" alt="Golden Autumn" class="w-full project-image object-cover transition-transform duration-500 group-hover:scale-[1.05]">
+                    <div class="project-image-container">
+                        <img src="https://static-01.cinema8.com/gallery/18200/e3c7a3bb-ef1f-44a2-8afd-04d22318b641/noleadsjustviews.webp" alt="Golden Autumn" class="project-image transition-transform duration-500 group-hover:scale-[1.05]">
+                    </div>
                     <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-4 sm:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         <h3 class="text-xl sm:text-3xl font-bold text-gray-100 leading-tight">Golden Autumn</h3>
                         <p class="text-md sm:text-lg text-accent mt-1">2018</p>
@@ -315,7 +331,9 @@
                 </a>
                 <!-- Proje 5: Flourishing Indigo -->
                 <a href="#" data-video-src="https://cdn1.cinema8.site/mp4s/6750/j65o5KbQJ0NOW0H1tODUybZ2CpniQEdH4w1aUvRoxcMLsWYeqD7rPPTMfYfJ7GHl/media.mp4" class="video-project-link group block relative overflow-hidden rounded-3px bg-gray-800 shadow-xl transition duration-500 transform hover:-translate-y-1 hover:shadow-accent/40">
-                    <img src="https://static-01.cinema8.com/gallery/18200/60e8f868-f3ca-4ab6-9bad-d81ce7030441/ate%C5%9Ftenkanatlar.webp" alt="Flourishing Indigo" class="w-full project-image object-cover transition-transform duration-500 group-hover:scale-[1.05]">
+                    <div class="project-image-container">
+                        <img src="https://static-01.cinema8.com/gallery/18200/60e8f868-f3ca-4ab6-9bad-d81ce7030441/ate%C5%9Ftenkanatlar.webp" alt="Flourishing Indigo" class="project-image transition-transform duration-500 group-hover:scale-[1.05]">
+                    </div>
                     <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-4 sm:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         <h3 class="text-xl sm:text-3xl font-bold text-gray-100 leading-tight">Ateşten Kanatlar | Book Launch</h3>
                         <p class="text-md sm:text-lg text-accent mt-1">2023</p>
@@ -323,7 +341,9 @@
                 </a>
                 <!-- Proje 6: Norður -->
                 <a href="#" data-video-src="https://cdn1.cinema8.site/mp4s/6750/sYQEyeydro-eXJpJhpswRk3y560qwAqLt6Bl7bcDO-tJw_5CI_WXu1cVvkLstWcb/media.mp4" class="video-project-link group block relative overflow-hidden rounded-3px bg-gray-800 shadow-xl transition duration-500 transform hover:-translate-y-1 hover:shadow-accent/40">
-                    <img src="https://static-01.cinema8.com/gallery/18200/1106f758-39bf-42ae-8ab5-62c6f4934fa9/characteranimation.webp" alt="Norður" class="w-full project-image object-cover transition-transform duration-500 group-hover:scale-[1.05]">
+                    <div class="project-image-container">
+                        <img src="https://static-01.cinema8.com/gallery/18200/1106f758-39bf-42ae-8ab5-62c6f4934fa9/characteranimation.webp" alt="Norður" class="project-image transition-transform duration-500 group-hover:scale-[1.05]">
+                    </div>
                     <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-4 sm:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         <h3 class="text-xl sm:text-3xl font-bold text-gray-100 leading-tight">Character Expressions</h3>
                         <p class="text-md sm:text-lg text-accent mt-1">2022</p>
@@ -494,12 +514,16 @@ Passionate about AI, he explores how technology can enhance creativity through s
                 statusToast.textContent = message;
                 statusToast.classList.remove('hidden', 'opacity-0', 'bg-green-500', 'bg-red-500');
                 statusToast.classList.add(isError ? 'bg-red-500' : 'bg-green-500');
+                 // Make toast visible
+                statusToast.classList.remove('opacity-0');
+
 
                 setTimeout(() => {
                     statusToast.classList.add('opacity-0');
-                    setTimeout(() => statusToast.classList.add('hidden'), 500);
-                }, 4000);
+                    setTimeout(() => statusToast.classList.add('hidden'), 500); // Hide after fade out
+                }, 4000); // Duration before fade out starts
             }
+
 
             if (contactForm && submitButton) {
                 contactForm.addEventListener('submit', function (event) {
@@ -507,12 +531,12 @@ Passionate about AI, he explores how technology can enhance creativity through s
 
                     const btnOriginalText = submitButton.innerHTML;
                     submitButton.disabled = true;
-                    submitButton.innerHTML = 'Sending...';
+                    submitButton.innerHTML = 'Sending...'; // İngilizce metin
 
                     const params = {
                         name: document.getElementById("name").value,
                         email: document.getElementById("email").value,
-                        reply_to: document.getElementById("email").value,
+                        reply_to: document.getElementById("email").value, // EmailJS'de 'yanıtla' adresi için
                         message: document.getElementById("message").value,
                     };
 
